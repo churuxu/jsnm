@@ -10,16 +10,20 @@
 
 #pragma comment(lib,"../deps/duktape.lib")
 
+typedef void (*logfunc)(const char* msg);
+static logfunc LOG_;
+#define LOG(msg) if(LOG_)LOG_(msg)
 
-/*
-void* module_init(module_config* config) {
-	if (config && config->log_) {
-		config->log_("example module init");
+
+void* module_init(module_get_prop_function func){
+	if (func) {
+		LOG_ = (logfunc)func("logger_function");
 	}
 	return NULL;
 }
-*/
+
 duk_ret_t dukopen_example(duk_context* ctx) {
+	LOG("dukopen_example");
 	duk_push_object(ctx);
 	duktape_init_Foo(ctx);
 	duktape_init_Bar(ctx);

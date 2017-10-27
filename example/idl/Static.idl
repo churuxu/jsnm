@@ -1,0 +1,8 @@
+
+
+
+[default]
+interface Static{
+    static void hello();
+}
+

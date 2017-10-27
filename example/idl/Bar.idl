@@ -1,0 +1,14 @@
+
+
+[destructible]
+interface Bar{
+
+	[constructor]
+    static Bar create(string name);
+	
+	void sayGoodBye();
+	
+	
+		
+};
+

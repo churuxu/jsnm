@@ -10,21 +10,11 @@
 module entry api, need user implement
 */
 
-
-typedef void (*module_log_function)(const char* msg);
-typedef void (*module_callback_function)(void* udata);
-typedef void (*module_callback_runner)(module_callback_function func, void* udata);
-
-
-typedef struct module_config{
-	module_callback_runner runner_; //module can use this field to run callback at main thread
-	module_log_function log_; //module can use this field to write log
-}module_config;
-
-typedef void* (*module_init_function)(module_config* config);
+/*module can use to get interfaces/functions/values from main module*/
+typedef void* (*module_get_prop_function)(const char* name);
 
 /** optional api for init module */
-MODULE_API void* module_init(module_config* config);
+MODULE_API void* module_init(module_get_prop_function func);
 
 /** dukopen_<modulename> for js require() */
 // MODULE_API duk_ret_t dukopen_<modulename>(duk_context* ctx);  

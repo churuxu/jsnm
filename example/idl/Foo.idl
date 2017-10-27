@@ -1,0 +1,14 @@
+
+
+
+
+[destructible]
+interface Foo{
+
+	[constructor]
+    static Foo create(string name);
+	
+	void sayHello();
+		
+};
+
